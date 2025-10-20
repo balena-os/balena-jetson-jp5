@@ -1,4 +1,46 @@
 - commits:
+    - subject: Update balena-yocto-scripts to 91589af4968ec5a482ac6ee8315d45607a89b828
+      hash: d8ef5b2f837d2a84f514af6cb31bfa3faf85f9ec
+      body: Update balena-yocto-scripts
+      footer:
+        Changelog-entry: Update balena-yocto-scripts to 91589af4968ec5a482ac6ee8315d45607a89b828
+        changelog-entry: Update balena-yocto-scripts to 91589af4968ec5a482ac6ee8315d45607a89b828
+      author: balena-renovate[bot]
+      nested:
+        - commits:
+            - subject: Update acceptable states for previous test runs
+              hash: 736cb72e967d4e5e814b0d49a577283d0b4b5a76
+              body: |
+                This makes the test run check more robust and handles
+                cases where we may see unexpected results like more or
+                fewer test runs with varying conclusions.
+
+                Github script is also more secure and less prone
+                to string processing issues than bash CLI commands.
+              footer:
+                Change-type: patch
+                change-type: patch
+                Signed-off-by: Kyle Harding <kyle@balena.io>
+                signed-off-by: Kyle Harding <kyle@balena.io>
+              author: Kyle Harding
+              nested: []
+            - subject: Fix AMI decrypt step paths
+              hash: 8257cae6fef47b7dd5fb5ec3693e893fc6b1314d
+              body: ""
+              footer:
+                CHange-type: patch
+                change-type: patch
+                Signed-off-by: Kyle Harding <kyle@balena.io>
+                signed-off-by: Kyle Harding <kyle@balena.io>
+              author: Kyle Harding
+              nested: []
+          version: balena-yocto-scripts-1.38.54
+          title: ""
+          date: 2025-10-20T21:05:57.787Z
+  version: 6.1.26+rev123
+  title: ""
+  date: 2025-10-20T23:08:39.840Z
+- commits:
     - subject: Update balena-yocto-scripts to 1981d86cd29fd000f554ea61eae51b74d9588fd1
       hash: 988107450190229a8bac61d50b8c38559176bc05
       body: Update balena-yocto-scripts
