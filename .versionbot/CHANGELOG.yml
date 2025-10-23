@@ -1,4 +1,37 @@
 - commits:
+    - subject: Update balena-yocto-scripts to 2b9aeef2c735d83d69ad4e8c6720c32f5869926e
+      hash: 9c807aef68aa23b59e0a84b26757e0beef4f6e89
+      body: Update balena-yocto-scripts
+      footer:
+        Changelog-entry: Update balena-yocto-scripts to 2b9aeef2c735d83d69ad4e8c6720c32f5869926e
+        changelog-entry: Update balena-yocto-scripts to 2b9aeef2c735d83d69ad4e8c6720c32f5869926e
+      author: balena-renovate[bot]
+      nested:
+        - commits:
+            - subject: Check test_matrix is non-null before transforming as JSON
+              hash: 4cc46babdc2d3974565eee17164551bec111ee9e
+              body: >
+                Currently breaks on merge for device types without test_matrix
+                defined.
+
+
+                > The template is not valid.
+                Newtonsoft.Json.JsonReaderException: Error reading JToken from
+                JsonReader.
+              footer:
+                Change-type: patch
+                change-type: patch
+                Signed-off-by: Kyle Harding <kyle@balena.io>
+                signed-off-by: Kyle Harding <kyle@balena.io>
+              author: Kyle Harding
+              nested: []
+          version: balena-yocto-scripts-1.38.57
+          title: ""
+          date: 2025-10-23T07:15:46.580Z
+  version: 6.1.26+rev126
+  title: ""
+  date: 2025-10-23T08:58:23.960Z
+- commits:
     - subject: Update balena-yocto-scripts to ee9d9f77cab8411071a4653ccd92365bf4d5ddd9
       hash: 54d55859d78ea6fd418618b1bf7c95b45f062b66
       body: Update balena-yocto-scripts
