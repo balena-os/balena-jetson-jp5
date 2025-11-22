@@ -1,6 +1,21 @@
 Change log
 -----------
 
+# v6.1.26+rev165
+## (2025-11-22)
+
+
+<details>
+<summary> Update balena-yocto-scripts to 6a399312257153d5bc3577e9e7120acdf68a4f1a [balena-renovate[bot]] </summary>
+
+> ## balena-yocto-scripts-1.38.95
+> ### (2025-11-22)
+> 
+> * Update actions/create-github-app-token action to v2.2.0 [balena-renovate[bot]]
+> 
+
+</details>
+
 # v6.1.26+rev164
 ## (2025-11-22)
 
