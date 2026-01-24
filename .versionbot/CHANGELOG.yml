@@ -1,4 +1,29 @@
 - commits:
+    - subject: Update balena-yocto-scripts to c512c72fb79574c4a51e4295d5d5c70d25f601ee
+      hash: 819678915107e8e458cbaeaeef59d9aaeeca9cb2
+      body: Update balena-yocto-scripts
+      footer:
+        Changelog-entry: Update balena-yocto-scripts to c512c72fb79574c4a51e4295d5d5c70d25f601ee
+        changelog-entry: Update balena-yocto-scripts to c512c72fb79574c4a51e4295d5d5c70d25f601ee
+      author: balena-renovate[bot]
+      nested:
+        - commits:
+            - subject: Update actions/checkout action to v6.0.2
+              hash: f0c37854d11f860dde63b8b7b03b8a186b88f26c
+              body: |
+                Update actions/checkout from 6.0.1 to 6.0.2
+              footer:
+                Change-type: patch
+                change-type: patch
+              author: balena-renovate[bot]
+              nested: []
+          version: balena-yocto-scripts-1.39.18
+          title: ""
+          date: 2026-01-24T05:06:17.023Z
+  version: 6.1.26+rev192
+  title: ""
+  date: 2026-01-24T11:05:44.539Z
+- commits:
     - subject: Update balena-yocto-scripts to 8dab33579c6e2fbafed0ca57735a6b0c0da40379
       hash: 08bb73f50a1aebbac0d7d6af7a91082d3bb8b677
       body: Update balena-yocto-scripts
