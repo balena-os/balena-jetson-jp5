@@ -1,5 +1,20 @@
 - commits:
     - subject: Update balena-os/github-workflows to
+        6fdae9ec102bb2deaa0bd767155687fafd538436
+      hash: fbb1b207fce2858997524e965b0045deaa31d83a
+      body: Update balena-os/github-workflows
+      footer:
+        Changelog-entry: Update balena-os/github-workflows to
+          6fdae9ec102bb2deaa0bd767155687fafd538436
+        changelog-entry: Update balena-os/github-workflows to
+          6fdae9ec102bb2deaa0bd767155687fafd538436
+      author: balena-renovate[bot]
+      nested: []
+  version: 6.1.26+rev219
+  title: ""
+  date: 2026-04-11T11:22:46.145Z
+- commits:
+    - subject: Update balena-os/github-workflows to
         7f356e5193eecee0c2b6c0f6352fc8ed29196dca
       hash: 32137e13ad1ecdb94c3255ae753ef557fef7aa01
       body: Update balena-os/github-workflows
