@@ -1,6 +1,23 @@
 Change log
 -----------
 
+# v6.1.26+rev221
+## (2026-04-30)
+
+
+<details>
+<summary> Update balena-yocto-scripts to 9d43ce8ff3b292419deb7f9a87f9bd2780b1047d [balena-renovate[bot]] </summary>
+
+> ## balena-yocto-scripts-1.39.32
+> ### (Invalid date)
+> 
+> * Set the default source-mirror environment to balena-production.us-east-1 [Kyle Harding]
+> * Backup shared-downloads to S3 on build failure [Kyle Harding]
+> * .github/workflows/yocto-build-deploy.yml: Add the rust crates to MIRRORS [Florin Sarbu]
+> 
+
+</details>
+
 # v6.1.26+rev220
 ## (2026-04-22)
 
