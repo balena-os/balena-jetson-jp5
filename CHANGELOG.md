@@ -1,6 +1,21 @@
 Change log
 -----------
 
+# v6.1.26+rev227
+## (2026-05-07)
+
+
+<details>
+<summary> Update balena-yocto-scripts to 50033716c5e2384d71a896205465d0a1223f3bed [balena-renovate[bot]] </summary>
+
+> ## balena-yocto-scripts-1.39.34
+> ### (2026-05-07)
+> 
+> * Dockerfile_yocto-build-env: Switch to docker-ce, pin 28.5.2 [Kyle Harding]
+> 
+
+</details>
+
 # v6.1.26+rev226
 ## (2026-05-02)
 
