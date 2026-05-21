@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update layers/meta-tegra to 8392a3b8066a05d201c3c054eb06225a23c934c4
+      hash: 9cd32b0190a50eb059e94f94cbbb5378424cbfc2
+      body: Update layers/meta-tegra
+      footer:
+        Changelog-entry: Update layers/meta-tegra to 8392a3b8066a05d201c3c054eb06225a23c934c4
+        changelog-entry: Update layers/meta-tegra to 8392a3b8066a05d201c3c054eb06225a23c934c4
+      author: balena-renovate[bot]
+      nested: []
+  version: 6.1.26+rev235
+  title: ""
+  date: 2026-05-21T19:45:51.036Z
+- commits:
     - subject: unpin flowzone, track @master
       hash: 90b93ae0128e4af59d531b882a0735b5f1375596
       body: |
