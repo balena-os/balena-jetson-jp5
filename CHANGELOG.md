@@ -1,6 +1,11 @@
 Change log
 -----------
 
+# v6.1.26+rev237
+## (2026-05-23)
+
+* Update layers/meta-tegra to d2d78ac180531d6db6434a82df845d1acfd90a4e [balena-renovate[bot]]
+
 # v6.1.26+rev236
 ## (2026-05-23)
 
