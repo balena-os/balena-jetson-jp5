@@ -1,4 +1,29 @@
 - commits:
+    - subject: Update balena-yocto-scripts to 28481193eb5a8748685099096e148bb8cf3b54fc
+      hash: e9c07ece698ec70f74880d7001253d5d1198a391
+      body: Update balena-yocto-scripts
+      footer:
+        Changelog-entry: Update balena-yocto-scripts to 28481193eb5a8748685099096e148bb8cf3b54fc
+        changelog-entry: Update balena-yocto-scripts to 28481193eb5a8748685099096e148bb8cf3b54fc
+      author: balena-renovate[bot]
+      nested:
+        - commits:
+            - subject: Update GitHub Actions
+              hash: 8a391b84283820e3d2d77894b0773abc0c3e9d73
+              body: |
+                Update actions/checkout from 6.0.2 to 6.0.3
+              footer:
+                Change-type: patch
+                change-type: patch
+              author: balena-renovate[bot]
+              nested: []
+          version: balena-yocto-scripts-1.41.3
+          title: ""
+          date: 2026-06-10T18:36:53.250Z
+  version: 6.1.26+rev245
+  title: ""
+  date: 2026-06-10T20:11:18.305Z
+- commits:
     - subject: Update layers/meta-tegra to 192e916c2720be04de2087fc45cbe36a70d1e043
       hash: 14386dd50c506c293305b818886b437c00689354
       body: Update layers/meta-tegra
