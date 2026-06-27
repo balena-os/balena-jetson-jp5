@@ -1,4 +1,19 @@
 - commits:
+    - subject: Update balena-os/github-workflows to
+        84d01a24c04dd1a1e4f0acc92ddb87c44844ed6b
+      hash: 246eec250abccb88ef9979fa2bd02e8becc6b21b
+      body: Update balena-os/github-workflows
+      footer:
+        Changelog-entry: Update balena-os/github-workflows to
+          84d01a24c04dd1a1e4f0acc92ddb87c44844ed6b
+        changelog-entry: Update balena-os/github-workflows to
+          84d01a24c04dd1a1e4f0acc92ddb87c44844ed6b
+      author: balena-renovate[bot]
+      nested: []
+  version: 6.1.26+rev250
+  title: ""
+  date: 2026-06-27T04:21:18.160Z
+- commits:
     - subject: Update layers/meta-tegra to 7f5c419bbdb8c8e060c19b25a96985c165c41c2d
       hash: 983c56157a694ed236fc60d695a14c15bc35b239
       body: Update layers/meta-tegra
