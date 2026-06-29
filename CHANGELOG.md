@@ -1,6 +1,21 @@
 Change log
 -----------
 
+# v6.1.26+rev254
+## (2026-06-29)
+
+
+<details>
+<summary> Update balena-yocto-scripts to 7d1760c79d5584f3d6bf9a1c2d0e796b6a5b5d82 [balena-renovate[bot]] </summary>
+
+> ## balena-yocto-scripts-1.41.5
+> ### (2026-06-29)
+> 
+> * yocto-build-deploy: replace pattern based all history first parent match [Alex Gonzalez]
+> 
+
+</details>
+
 # v6.1.26+rev253
 ## (2026-06-28)
 
