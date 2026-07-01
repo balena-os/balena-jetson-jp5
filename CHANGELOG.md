@@ -1,6 +1,21 @@
 Change log
 -----------
 
+# v6.1.26+rev255
+## (2026-07-01)
+
+
+<details>
+<summary> Update contracts to 8612b73406fd9c8242bc13ce979fd10e06f6c789 [balena-renovate[bot]] </summary>
+
+> ## contracts-2.0.145
+> ### (2026-07-01)
+> 
+> * hw/device-type: Add Jetson AGX Thor Devkit contract [Alexandru Costache]
+> 
+
+</details>
+
 # v6.1.26+rev254
 ## (2026-06-29)
 
