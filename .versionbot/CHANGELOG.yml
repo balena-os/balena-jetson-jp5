@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update product-os/flowzone to 6920e56ff99bc1679d85c9b23935bf35018b75fd
+      hash: 713fce8cbd032d216d5744cfc24048d3de667771
+      body: Update product-os/flowzone
+      footer:
+        Changelog-entry: Update product-os/flowzone to 6920e56ff99bc1679d85c9b23935bf35018b75fd
+        changelog-entry: Update product-os/flowzone to 6920e56ff99bc1679d85c9b23935bf35018b75fd
+      author: balena-renovate[bot]
+      nested: []
+  version: 6.1.26+rev257
+  title: ""
+  date: 2026-07-04T01:49:52.111Z
+- commits:
     - subject: Update layers/meta-tegra to 4b669157ab2fde553eaaae1e810607b248892bae
       hash: ff81112a09b850a6ec959a9e160528385229a327
       body: Update layers/meta-tegra
