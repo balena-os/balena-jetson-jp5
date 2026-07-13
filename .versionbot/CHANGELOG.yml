@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update layers/meta-tegra to eeb1ddf05641c2f9a85578fae1bdd94ecd523d78
+      hash: 9fae5849f573230e6a5a4f3672a5839d7875d6c0
+      body: Update layers/meta-tegra
+      footer:
+        Changelog-entry: Update layers/meta-tegra to eeb1ddf05641c2f9a85578fae1bdd94ecd523d78
+        changelog-entry: Update layers/meta-tegra to eeb1ddf05641c2f9a85578fae1bdd94ecd523d78
+      author: balena-renovate[bot]
+      nested: []
+  version: 6.1.26+rev263
+  title: ""
+  date: 2026-07-13T14:03:49.158Z
+- commits:
     - subject: Update layers/meta-tegra to 127a982d9623236e5e83d83cd3a3858b05969d8b
       hash: 3ef490999c13680720e05a840591118adc0413fc
       body: Update layers/meta-tegra
