@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update layers/meta-tegra to abf7600589090740565cfc0afc94c01e7e1f6ce0
+      hash: f177eae9c4d929974d131eaaa4b9a1bba6332a72
+      body: Update layers/meta-tegra
+      footer:
+        Changelog-entry: Update layers/meta-tegra to abf7600589090740565cfc0afc94c01e7e1f6ce0
+        changelog-entry: Update layers/meta-tegra to abf7600589090740565cfc0afc94c01e7e1f6ce0
+      author: balena-renovate[bot]
+      nested: []
+  version: 6.1.26+rev266
+  title: ""
+  date: 2026-07-18T04:01:02.913Z
+- commits:
     - subject: Update balena-yocto-scripts to 4c19733cad4cd1473d196d41ea7d2f4531913172
       hash: 2030fa4f3c85205c6781c02de7f27c6ad36c1cc6
       body: Update balena-yocto-scripts
