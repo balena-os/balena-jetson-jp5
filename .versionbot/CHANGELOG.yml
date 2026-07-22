@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update layers/meta-tegra to 7906ae5e83ddc27e20666778f91a3b755dcc443c
+      hash: 792f6b782e406eecd7d254fa62dccfd6e6f2c802
+      body: Update layers/meta-tegra
+      footer:
+        Changelog-entry: Update layers/meta-tegra to 7906ae5e83ddc27e20666778f91a3b755dcc443c
+        changelog-entry: Update layers/meta-tegra to 7906ae5e83ddc27e20666778f91a3b755dcc443c
+      author: balena-renovate[bot]
+      nested: []
+  version: 6.1.26+rev269
+  title: ""
+  date: 2026-07-22T11:55:33.491Z
+- commits:
     - subject: Update contracts to a4ab96e2b9f6f8c40f80072f7dd1d2369eb7466e
       hash: cc8a6509e63b6a225ace8cf33e6fa0c40e4e7dca
       body: Update contracts
