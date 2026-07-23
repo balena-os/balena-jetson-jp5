@@ -1,5 +1,13 @@
 {
 	"extends": [
 		"github>balena-os/renovate-config"
+	],
+	"packageRules": [
+		{
+			"description": "Disable meta-tegra updates because it removes support for jetson-xavier-nx-devkit",
+			"matchManagers": ["git-submodules"],
+			"matchDepNames": ["layers/meta-tegra"],
+			"enabled": false
+		}
 	]
 }
