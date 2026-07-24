@@ -9,5 +9,6 @@
 			"matchDepNames": ["layers/meta-tegra"],
 			"enabled": false
 		}
-	]
+	],
+	"enabled": false
 }
