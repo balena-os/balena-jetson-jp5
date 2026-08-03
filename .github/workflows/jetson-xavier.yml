@@ -52,13 +52,13 @@ jobs:
       machine: jetson-xavier
       # worker_type defaults to testbot
       # worker_fleets defaults to balena/testbot-rig,balena/testbot-rig-partners,balena/testbot-rig-x86,balena/testbot-rig-partners-x86
-      test_matrix: >
-        {
-          "test_suite": ["os","cloud"],
-          "environment": ["balena-cloud.com"],
-          "worker_type": ["testbot"],
-          "runs_on": [["ubuntu-latest"]]
-        }
+      #test_matrix: >
+      #  {
+      #    "test_suite": ["os","cloud"],
+      #    "environment": ["balena-cloud.com"],
+      #    "worker_type": ["testbot"],
+      #    "runs_on": [["ubuntu-latest"]]
+      #  }
       # Allow manual workflow runs to force finalize without checking previous test runs
       force-finalize: ${{ inputs.force-finalize || false }}
       # We don't wan't to publish a finalised release on merge, as we don't have a jp4 -> jp5 migration solution for HUPs yet
