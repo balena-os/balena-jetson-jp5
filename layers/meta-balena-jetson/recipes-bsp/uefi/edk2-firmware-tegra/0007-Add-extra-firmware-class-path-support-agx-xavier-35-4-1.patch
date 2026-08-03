@@ -1,0 +1,185 @@
+
+
+L4TLauncher currently ignores any key in extra_uEnv.txt other than
+custom_fdt_file, so the extra_os_firmware_class_path entry written by
+meta-balena's os-extra-firmware service into extra_uEnv.txt is parsed
+but never appended to the kernel command line, meaning
+firmware_class.path does not survive a reboot.
+
+This backports the extra_os_firmware_class_path parsing and BootArgs
+concatenation already shipped for the Orin/Thor L4TLauncher patches
+(balena-jetson-orin commit 6ceaba9, 2025-12-05), and moves the
+ProcessExtrauEnv() call to run unconditionally (matching upstream)
+instead of only when extlinux.conf has an "FDT default" entry.
+
+Upstream-status: Inappropriate [configuration]
+Signed-off-by: guille-vega <guillermo.vega@balena.io>
+
+Index: edk2-tegra/edk2-nvidia/Silicon/NVIDIA/Application/L4TLauncher/L4TLauncher.c
+===================================================================
+--- edk2-tegra.orig/edk2-nvidia/Silicon/NVIDIA/Application/L4TLauncher/L4TLauncher.c
++++ edk2-tegra/edk2-nvidia/Silicon/NVIDIA/Application/L4TLauncher/L4TLauncher.c
+@@ -1173,7 +1173,8 @@
+   IN EFI_HANDLE            DeviceHandle,
+   IN UINT32                BootChain,
+   IN CONST CHAR16          *BalenaOSRootFs,
+-  OUT CHAR16               **CustomFdtName
++  OUT CHAR16               **CustomFdtName,
++  OUT CHAR16               **ExtraOsFirmwareClassPath
+ )
+ {
+   EFI_STATUS       Status;
+@@ -1183,13 +1184,16 @@
+   EFI_FILE_HANDLE  FileHandle = NULL;
+   CHAR16           *FileLine = NULL;
+   CHAR16           *DtbName = NULL;
++  CHAR16           *FirmwareClassPathValue = NULL;
+   BOOLEAN          Ascii;
+   CHAR16 *LineCopy = AllocateZeroPool(MAX_DTB_PATH_LEN);
+   UINT64 len;
++  UINTN  FirmwareClassPathLen;
+ 
+   // Set default dtb as fail-safe
+   *CustomFdtName = AllocateZeroPool(MAX_DTB_PATH_LEN);
+   UnicodeSPrint (*CustomFdtName, MAX_DTB_PATH_LEN, L"boot\\%s\0", DEFAULT_AGX_XAVIER_DTB_NAME);
++  *ExtraOsFirmwareClassPath = NULL;
+ 
+   Status = FindPartitionInfo (DeviceHandle, BALENA_BOOT_PARTITION, BootChain, NULL, &BootPartHandle);
+   if (EFI_ERROR (Status)) {
+@@ -1228,23 +1232,40 @@
+ 
+     len = StrLen(LineCopy);
+ 
+-    if (len < 21 /* dtb name should have at least 1 character + extension */) {
+-      ErrorPrint(L"DTB name is too short. Using default dtb.\n");
+-      return EFI_INVALID_PARAMETER;
+-    }
+-
+-    DtbName = StrStr(LineCopy, L"custom_fdt_file=");
+-
+-    if (NULL != DtbName) {
+-      DtbName += StrLen(L"custom_fdt_file=");
+-      UnicodeSPrint(*CustomFdtName, MAX_DTB_PATH_LEN, L"boot\\%s\0", DtbName);
+-      Print(L"Selected dtb name is %s:\n", CustomFdtName);
+-      Status = CheckDtbExists(DeviceHandle, BootChain, BalenaOSRootFs, *CustomFdtName);
+-
+-      if (EFI_ERROR(Status)) {
+-        ErrorPrint(L"Selected dtb not found! Using the default DTB for this device type\n");
+-        UnicodeSPrint(*CustomFdtName, MAX_DTB_PATH_LEN, L"boot\\%s\0", DEFAULT_AGX_XAVIER_DTB_NAME);
+-        return Status;
++    if (0 < len) {
++      DtbName = StrStr(LineCopy, L"custom_fdt_file=");
++
++      if (NULL != DtbName) {
++        DtbName += StrLen(L"custom_fdt_file=");
++        UnicodeSPrint(*CustomFdtName, MAX_DTB_PATH_LEN, L"boot\\%s\0", DtbName);
++        Print(L"Selected dtb name is %s:\n", CustomFdtName);
++        Status = CheckDtbExists(DeviceHandle, BootChain, BalenaOSRootFs, *CustomFdtName);
++
++        if (EFI_ERROR(Status)) {
++          ErrorPrint(L"Selected dtb not found! Using the default DTB for this device type\n");
++          UnicodeSPrint(*CustomFdtName, MAX_DTB_PATH_LEN, L"boot\\%s\0", DEFAULT_AGX_XAVIER_DTB_NAME);
++          return Status;
++        }
++      }
++
++      FirmwareClassPathValue = StrStr(LineCopy, L"extra_os_firmware_class_path=");
++      if (NULL != FirmwareClassPathValue) {
++        FirmwareClassPathValue += StrLen(L"extra_os_firmware_class_path=");
++        FirmwareClassPathLen = StrLen(FirmwareClassPathValue);
++        // Use up to 256 chars for the firmware class path
++        if (256 >= FirmwareClassPathLen) {
++          if (*ExtraOsFirmwareClassPath != NULL) {
++            FreePool(*ExtraOsFirmwareClassPath);
++          }
++          *ExtraOsFirmwareClassPath = AllocateCopyPool(StrSize(FirmwareClassPathValue), FirmwareClassPathValue);
++          if (*ExtraOsFirmwareClassPath != NULL) {
++            Print(L"%a: extra_os_firmware_class_path present in extra_uEnv.txt: %s\n", __FUNCTION__, *ExtraOsFirmwareClassPath);
++          } else {
++            ErrorPrint(L"%a: Failed to allocate memory for extra_os_firmware_class_path\n", __FUNCTION__);
++          }
++        } else {
++          ErrorPrint(L"%a: extra_os_firmware_class_path value exceeds the 256 character limit and will be ignored.\n", __FUNCTION__);
++        }
+       }
+     }
+ 
+@@ -1296,6 +1317,8 @@
+   UINTN            Index;
+   CHAR16           *UpdatedCmdline = NULL;
+   UINTN            argsSize;
++  CHAR16           *ExtrauEnvDtb = NULL;
++  CHAR16           *ExtraOsFirmwareClassPath = NULL;
+ 
+   ZeroMem (BootConfig, sizeof (EXTLINUX_BOOT_CONFIG));
+ 
+@@ -1317,6 +1340,12 @@
+     return Status;
+   }
+ 
++  // Get custom dtb name and extra firmware class path, if set in extra_uEnv.txt
++  Status = ProcessExtrauEnv(DeviceHandle, BootChain, BalenaOSRootFs, &ExtrauEnvDtb, &ExtraOsFirmwareClassPath);
++  if (EFI_ERROR (Status)) {
++    ErrorPrint (L"%a: Failed to process extra_uEnv.txt: %r\r\n", __FUNCTION__, Status);
++  }
++
+   while (!FileHandleEof (FileHandle)) {
+     if (FileLine != NULL) {
+       FreePool (FileLine);
+@@ -1380,14 +1409,9 @@
+           if (0 == StrnCmp(BootConfig->BootOptions[BootConfig->NumberOfBootOptions-1].DtbPath, EXTLINUX_GENERIC_FDT, StrLen (EXTLINUX_GENERIC_FDT))) {
+             if (NULL != BootConfig->BootOptions[BootConfig->NumberOfBootOptions-1].DtbPath) {
+               FreePool(BootConfig->BootOptions[BootConfig->NumberOfBootOptions-1].DtbPath);
+-              /* Check if a device-tree name is set in extra_uEnv.txt */
+-              CHAR16 *ExtrauEnvDtb = NULL;
+-              Status = ProcessExtrauEnv(DeviceHandle, BootChain, BalenaOSRootFs, &ExtrauEnvDtb);
+-
+-              if (!EFI_ERROR(Status)) {
+-                  Print(L"Using default device-tree\n");
+-              }
++              /* Use the device-tree name already parsed from extra_uEnv.txt, if any */
+               BootConfig->BootOptions[BootConfig->NumberOfBootOptions-1].DtbPath = ExtrauEnvDtb;
++              ExtrauEnvDtb = NULL;
+               Print(L"Kernel device-tree after parsing extra_uEnv.txt is %s\n", BootConfig->BootOptions[BootConfig->NumberOfBootOptions-1].DtbPath);
+             }
+          } else {
+@@ -1398,6 +1422,9 @@
+ 
+         Status = CheckCommandString (CleanLine, EXTLINUX_KEY_APPEND, &BootConfig->BootOptions[BootConfig->NumberOfBootOptions-1].BootArgs);
+         argsSize = StrSize (BootConfig->BootOptions[BootConfig->NumberOfBootOptions-1].BootArgs);
++        if (NULL != ExtraOsFirmwareClassPath) {
++          argsSize += StrSize(ExtraOsFirmwareClassPath) + sizeof (CHAR16);
++        }
+         UpdatedCmdline = AllocateZeroPool (argsSize + StrSize(RootL) + StrSize(BalenaOSRootFs) + 2);
+         if (NULL == UpdatedCmdline) {
+             ErrorPrint (L"%a: Failed to allocate memory for updated cmdline\r\n", __FUNCTION__);
+@@ -1406,6 +1433,13 @@
+ 
+         /* Append root label to cmdline that has been read from the extlinux.conf read from the active rootfs */
+         UnicodeSPrint (UpdatedCmdline, StrSize(RootL) + StrSize(BalenaOSRootFs) + argsSize, L"%s %s%s\0", BootConfig->BootOptions[BootConfig->NumberOfBootOptions-1].BootArgs, RootL, BalenaOSRootFs);
++
++        /* Append the firmware search path parsed from extra_uEnv.txt, if any */
++        if (NULL != ExtraOsFirmwareClassPath) {
++          StrCatS (UpdatedCmdline, (argsSize + StrSize(RootL) + StrSize(BalenaOSRootFs) + 2) / sizeof (CHAR16), L" ");
++          StrCatS (UpdatedCmdline, (argsSize + StrSize(RootL) + StrSize(BalenaOSRootFs) + 2) / sizeof (CHAR16), ExtraOsFirmwareClassPath);
++        }
++
+         if (NULL != BootConfig->BootOptions[BootConfig->NumberOfBootOptions-1].BootArgs) {
+           FreePool(BootConfig->BootOptions[BootConfig->NumberOfBootOptions-1].BootArgs);
+         }
+@@ -1457,6 +1491,15 @@
+     }
+   }
+ 
++  // Free extra_uEnv.txt values if they were allocated but not consumed above
++  if (ExtrauEnvDtb != NULL) {
++    FreePool(ExtrauEnvDtb);
++  }
++
++  if (ExtraOsFirmwareClassPath != NULL) {
++    FreePool(ExtraOsFirmwareClassPath);
++  }
++
+   if (BootConfig->NumberOfBootOptions == 0) {
+     return EFI_NOT_FOUND;
+   } else {

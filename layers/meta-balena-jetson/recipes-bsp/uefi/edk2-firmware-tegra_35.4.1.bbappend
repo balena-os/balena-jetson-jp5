@@ -13,16 +13,19 @@ do_deploy:append() {
 SRC_URI:append:jetson-xavier = " \
     file://set_boot_order_xavier_nx.patch;patchdir=.. \
     file://0005-Add-hup-and-rollback-support-agx-xavier-35-4-1.patch;patchdir=.. \
+    file://0007-Add-extra-firmware-class-path-support-agx-xavier-35-4-1.patch;patchdir=.. \
 "
 
-# Currently not included: file://0001-Revert-feat-t193-support-multi-head-win-fb-_carveout.patch;patchdir=../edk2-nvidia 
+# Currently not included: file://0001-Revert-feat-t193-support-multi-head-win-fb-_carveout.patch;patchdir=../edk2-nvidia
 SRC_URI:append:jetson-xavier-nx-devkit-emmc = " \
     file://0005-L4TLauncher-hup-rollback-support-jetson-xavier-nx-devkit-emmc.patch;patchdir=.. \
+    file://0007-L4TLauncher-extra-firmware-class-path-support-jetson-xavier-nx-devkit-emmc.patch;patchdir=.. \
     file://set_boot_order_xavier_nx.patch;patchdir=.. \
 "
 
 SRC_URI:append:jetson-xavier-nx-devkit = " \
     file://0005-L4TLauncher-hup-rollback-support-jetson-xavier-nx-devkit-emmc.patch;patchdir=.. \
+    file://0007-L4TLauncher-extra-firmware-class-path-support-jetson-xavier-nx-devkit-emmc.patch;patchdir=.. \
     file://set_boot_order_xavier_nx.patch;patchdir=.. \
 "
 
