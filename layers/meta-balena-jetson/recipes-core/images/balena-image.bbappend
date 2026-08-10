@@ -100,3 +100,7 @@ write_jetson_partitions_xavier() {
       START=$(expr ${END} \+ 1)
     done
 }
+
+BALENA_STATE_SIZE:jetson-xavier-nx-devkit-emmc = "20480"
+BALENA_STATE_SIZE:jetson-xavier-nx-devkit = "20480"
+BALENA_STATE_SIZE:jetson-xavier = "20480"

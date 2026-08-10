@@ -4,4 +4,4 @@ do_install:append () {
     mv ${D}/etc/udev/rules.d/*.rules ${D}${base_libdir}/udev/rules.d/
 }
 
-FILES:${PN}-udev += "/lib/udev/rules.d"
+FILES:${PN}-udev += "${base_libdir}/udev/rules.d"
