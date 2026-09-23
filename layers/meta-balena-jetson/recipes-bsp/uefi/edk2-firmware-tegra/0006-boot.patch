@@ -2,7 +2,7 @@ Index: edk2-tegra/edk2-nvidia/Platform/NVIDIA/Jetson/Jetson.dsc.inc
 ===================================================================
 --- edk2-tegra.orig/edk2-nvidia/Platform/NVIDIA/Jetson/Jetson.dsc.inc
 +++ edk2-tegra/edk2-nvidia/Platform/NVIDIA/Jetson/Jetson.dsc.inc
-@@ -99,6 +99,7 @@
+@@ -107,6 +107,7 @@
    gNVIDIATokenSpaceGuid.PcdBrBctLogicalSlotSize|0x4000
    gNVIDIATokenSpaceGuid.PcdBrBctDataSize|0x1000
    gNVIDIATokenSpaceGuid.PcdAffinityMpIdrSupported|FALSE
@@ -10,10 +10,10 @@ Index: edk2-tegra/edk2-nvidia/Platform/NVIDIA/Jetson/Jetson.dsc.inc
  
  [PcdsDynamicHii.common.T194]
    gNVIDIATokenSpaceGuid.PcdPcieResourceConfigNeeded|L"PCIeResourceConfig"|gNVIDIATokenSpaceGuid|0x0|1|BS
-@@ -115,6 +116,7 @@
-   gNVIDIATokenSpaceGuid.PcdBrBctLogicalSlotSize|0x10000
+@@ -124,6 +125,7 @@
    gNVIDIATokenSpaceGuid.PcdBrBctDataSize|0x2000
    gNVIDIATokenSpaceGuid.PcdAffinityMpIdrSupported|TRUE
+   gNVIDIATokenSpaceGuid.PcdGptIsPerBootChain|TRUE
 +  gNVIDIATokenSpaceGuid.PcdAllowOsAccessQspi|TRUE
  
  [PcdsDynamicHii.common.T234SLT]
@@ -22,7 +22,7 @@ Index: edk2-tegra/edk2-nvidia/Silicon/NVIDIA/NVIDIA.dec
 ===================================================================
 --- edk2-tegra.orig/edk2-nvidia/Silicon/NVIDIA/NVIDIA.dec
 +++ edk2-tegra/edk2-nvidia/Silicon/NVIDIA/NVIDIA.dec
-@@ -475,7 +475,7 @@
+@@ -497,7 +497,7 @@
    gNVIDIATokenSpaceGuid.PcdNewDeviceHierarchy|0x01|UINT8|0x00000068
  
  #Enable OS access to QSPI DTB
